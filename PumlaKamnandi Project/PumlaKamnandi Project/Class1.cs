@@ -8,6 +8,6 @@ namespace PumlaKamnandi_Project
 {
     class Class1
     {
-        public string table; 
+        public string table;
     }
 }
