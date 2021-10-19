@@ -8,5 +8,6 @@ namespace PumlaKamnandi_Project
 {
     class Class1
     {
+        public string t; 
     }
 }
