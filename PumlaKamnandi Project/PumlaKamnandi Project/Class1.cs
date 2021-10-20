@@ -8,10 +8,10 @@ namespace PumlaKamnandi_Project
 {
     class Class1
     {
+        //ADDED A NEW DATABASE
 
         public string table;   
-
-        public string table;
+        
         public string austin;
 
     }
