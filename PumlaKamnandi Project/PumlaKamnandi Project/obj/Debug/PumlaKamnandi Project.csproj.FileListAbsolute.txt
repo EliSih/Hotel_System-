@@ -7,3 +7,12 @@ C:\Users\Eli.Sih\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKa
 C:\Users\Eli.Sih\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Properties.Resources.resources
 C:\Users\Eli.Sih\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.GenerateResource.cache
 C:\Users\Eli.Sih\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.CoreCompileInputs.cache
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.AssemblyReference.cache
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Form1.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Form2.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Form3.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Form4.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.MDIParent1.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Properties.Resources.resources
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.GenerateResource.cache
+C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.CoreCompileInputs.cache
