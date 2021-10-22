@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using PumlaKamnandi_Project.Data;
-using PumlaKamnandi_Project.Business;
+using PumlaKamnandi_Project.;
 
-namespace PumlaKamnandi_Project
+namespace PumlaKamnandi_Project.Data
 {
     class PhumlaKamnandiDatabase:DataBase
     {
