@@ -9,6 +9,5 @@ namespace PumlaKamnandi_Project
     class CustomerController
     {
         
-
     }
 }
