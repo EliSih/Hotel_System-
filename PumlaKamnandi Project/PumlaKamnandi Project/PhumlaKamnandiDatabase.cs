@@ -40,7 +40,7 @@ namespace PumlaKamnandi_Project
         #region Property Method: Collection
         public Collection<Employee> AllEmployees
         {
-            get
+            get 
             {
                 return employees;
             }
