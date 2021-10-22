@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PumlaKamnandi_Project.Data
 {
-    class Customer: Person
+    class Customer : Person
     {
         #region data field
         private string customerID;
@@ -21,9 +22,10 @@ namespace PumlaKamnandi_Project.Data
         #endregion
         #region constructer
 
-        public Customer() : base() {
+        public Customer() : base()
+        {
 
-           // GetPersonType = TypeOfPerson.PersonType.Customer;
+            // GetPersonType = TypeOfPerson.PersonType.Customer;
 
         }
         #endregion
@@ -33,7 +35,8 @@ namespace PumlaKamnandi_Project.Data
             get { return PaymentType; }
             set { PaymentType = value; }
         }
-        public string Balance {
+        public string Balance
+        {
             get { return balance; }
             set { balance = value; }
         }
@@ -51,12 +54,12 @@ namespace PumlaKamnandi_Project.Data
         {
             get { return customerID; }
             set { customerID = value; }
-        } 
+        }
         public int AccountNumber
         {
             get { return accountNumber; }
-            set { accountNumber =value;}
-        
+            set { accountNumber = value; }
+
         }
 
         #endregion

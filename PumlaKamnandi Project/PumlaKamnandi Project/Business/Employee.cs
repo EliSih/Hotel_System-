@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PumlaKamnandi_Project.Data
 {
-    class Employee: Person
+    class Employee : Person
     {
         #region data fields
         private string EmployeeID;

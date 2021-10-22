@@ -9,20 +9,20 @@ namespace PumlaKamnandi_Project.Data
 
     public class Person
     {
-       
+
 
         #region data members
-        private int Id
-        private string name, Phone,address,emailaddress;
+        private string Id, name, Phone, address, emailaddress;
         #endregion
 
         #region Properties
-        public int ID
+        public string ID
         {
             get { return Id; }
             set { Id = value; }
         }
-        public string EmailAddress {
+        public string EmailAddress
+        {
             get { return emailaddress; }
             set { emailaddress = value; }
         }
@@ -54,7 +54,7 @@ namespace PumlaKamnandi_Project.Data
             address = "";
         }
 
-        public Person(string pID, string pName, string pPhone,string pEmailAddress,string pAddress)
+        public Person(string pID, string pName, string pPhone, string pEmailAddress, string pAddress)
         {
             Id = pID;
             name = pName;
@@ -73,5 +73,5 @@ namespace PumlaKamnandi_Project.Data
 
         #endregion
     }
-    
+
 }
