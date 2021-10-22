@@ -12,11 +12,12 @@ namespace PumlaKamnandi_Project.Data
        
 
         #region data members
-        private string Id, name, Phone,address,emailaddress;
+        private int Id
+        private string name, Phone,address,emailaddress;
         #endregion
 
         #region Properties
-        public string ID
+        public int ID
         {
             get { return Id; }
             set { Id = value; }
