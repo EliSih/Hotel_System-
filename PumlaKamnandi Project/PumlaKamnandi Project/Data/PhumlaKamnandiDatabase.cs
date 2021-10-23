@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 namespace PumlaKamnandi_Project.Data
 {
+    enum DBOperation { Add, Delete, Edit };
     class PhumlaKamnandiDatabase:DataBase
     {
         #region  Data members        
@@ -255,22 +256,20 @@ namespace PumlaKamnandi_Project.Data
                             hotel.HotelID = Convert.ToInt32(myRow["HotelID"]);
                             hotel.Location = Convert.ToString(myRow["Location"]).TrimEnd();
                             hotel.ContactDetails = Convert.ToString(myRow["contactDetails"]).TrimEnd();
-                            invoices.Add(invoice);
+                            hotels.Add(hotel);
                         }
                     }
                     break;
+                    
 
             }
-            //READ from the table  
+            //READ from the table  ;
             
                 
             }
         }
-        private void FillRow(DataRow aRow, Employee anEmp, DBOperation operation)
+        private void FillCustomerRow(DataRow aRow, Customer customer, DBOperation operation)
         {
-            HeadWaiter headwaiter;
-            Runner runner;
-            Waiter waiter;
             if (operation == DBOperation.Add)
             {
                 aRow["ID"] = anEmp.ID;  //NOTE square brackets to indicate index of collections of fields in row.
