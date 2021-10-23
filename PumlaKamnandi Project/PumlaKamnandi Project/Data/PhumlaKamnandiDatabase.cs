@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using 
+using
+using PumlaKamnandi_Project.Data;
 
 namespace PumlaKamnandi_Project
 {

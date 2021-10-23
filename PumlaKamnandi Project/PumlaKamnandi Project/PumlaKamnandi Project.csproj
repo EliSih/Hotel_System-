@@ -66,6 +66,7 @@
     <Compile Include="Business\CustomerController.cs" />
     <Compile Include="Business\Customer.cs" />
     <Compile Include="Business\Employee.cs" />
+    <Compile Include="Business\Invoice.cs" />
     <Compile Include="Business\Person.cs" />
     <Compile Include="Data\DataBase.cs" />
     <Compile Include="Presentation\Form1.cs">
