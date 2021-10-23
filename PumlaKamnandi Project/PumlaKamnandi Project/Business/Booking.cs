@@ -9,52 +9,75 @@ namespace PumlaKamnandi_Project.Business
     class Booking
     {
         #region Data Members
-        private string reservationID;
+        private int reservationID;
         private string checkInDate;
         private string checkOutDate;
         private string description;
         private decimal totalCost;
+        private int employeeID;
+        private int roomNumber;
+        #endregion
+
+        #region Constructor
+        public Booking(int reservationID, string checkInDate, string checkOutDate, string description, decimal totalCost)
+        {
+            this.reservationID = reservationID;
+            this.checkInDate = checkInDate;
+            this.checkOutDate = checkOutDate;
+            this.description = description;
+            this.totalCost = totalCost;
+        }
+
+        public Booking()
+        {
+
+        }
         #endregion
 
         #region Access Modifiers
-        public string getReservationID
+        public int ReservationID
         {
             get { return reservationID; }
             set { reservationID = value; }
         }
 
-        public string getCheckInDate
+        public string CheckInDate
         {
             get { return checkInDate; }
             set { checkInDate = value; }
         }
 
-        public string getCheckOutDate
+        public string CheckOutDate
         {
             get { return checkOutDate; }
             set { checkOutDate = value; }
         }
 
-        public string getDescription
+        public string Description
         {
             get { return description; }
             set { description = value; }
         }
 
-        public decimal getTotalCost
+        public decimal TotalCost
         {
             get { return totalCost; }
             set { totalCost = value; }
         }
-        #endregion
 
-        #region Constructor
-        public Booking(string checkInDate, string checkOutDate, string description)
+        public int RoomNumber
         {
-            this.checkInDate = checkInDate;
-            this.checkOutDate = checkOutDate;
-            this.description = description;
+            get { return roomNumber; }
+            set { roomNumber = value; }
+        }
+
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set { employeeID = value; }
         }
         #endregion
+
+
     }
 }

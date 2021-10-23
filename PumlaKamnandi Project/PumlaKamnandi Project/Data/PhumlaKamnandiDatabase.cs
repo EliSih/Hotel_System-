@@ -146,13 +146,13 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             booking = new Booking();
-                            booking.Reservation = Convert.ToString(myRow["Reservation"]).TrimEnd();
-                            booking.RoomNumber = Convert.ToString(myRow["roomNumber"]).TrimEnd();
+                            booking.ReservationID = Convert.ToInt32(myRow["ReservationID"]);
+                            booking.RoomNumber = Convert.ToInt32(myRow["roomNumber"]);
                             booking.CheckInDate = Convert.ToString(myRow["checkInDate"]).TrimEnd();
                             booking.CheckOutDate = Convert.ToString(myRow["checkOutDate"]).TrimEnd();
                             booking.Description = Convert.ToString(myRow["Description"]).TrimEnd();
-                            booking.TotalCost = Convert.ToString(myRow["totalCost"]).TrimEnd();
-                            booking.EmployeeID = Convert.ToString(myRow["EmployeeID"]).TrimEnd();
+                            booking.TotalCost = Convert.ToInt32(myRow["totalCost"]);
+                            booking.EmployeeID = Convert.ToInt32(myRow["EmployeeID"]);
                             bookings.Add(booking);
                         }
                     }
