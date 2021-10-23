@@ -67,6 +67,7 @@
     <Compile Include="Business\CustomerController.cs" />
     <Compile Include="Business\Customer.cs" />
     <Compile Include="Business\Employee.cs" />
+    <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Invoice.cs" />
     <Compile Include="Business\Payment.cs" />
     <Compile Include="Business\Person.cs" />
