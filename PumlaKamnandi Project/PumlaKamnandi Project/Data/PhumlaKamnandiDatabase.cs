@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using
-using PumlaKamnandi_Project.Data;
 
-namespace PumlaKamnandi_Project
+namespace PumlaKamnandi_Project.Data
 {
     class PhumlaKamnandiDatabase:DataBase
     {
@@ -42,7 +40,7 @@ namespace PumlaKamnandi_Project
         #region Property Method: Collection
         public Collection<Employee> AllEmployees
         {
-            get
+            get 
             {
                 return employees;
             }
@@ -140,63 +138,132 @@ namespace PumlaKamnandi_Project
             
             switch (table)
             {
-                case "HeadWa":
-                    roleValue = Role.RoleType.Headwaiter;
-                    break;
-                case "Waiter":
-                    roleValue = Role.RoleType.Waiter;
-                    break;
-                case "Runner":
-                    roleValue = Role.RoleType.Runner;
-                    break;
-            }
-            //READ from the table  
-            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
-            {
-                myRow = myRow_loopVariable;
-                if (!(myRow.RowState == DataRowState.Deleted))
-                {
-                    //Instantiate a new Employee object
-                    anEmp = new Employee(roleValue);
-                    //Obtain each employee attribute from the specific field in the row in the table
-                    anEmp.ID = Convert.ToString(myRow["ID"]).TrimEnd();
-                    //Do the same for all other attributes
-                    anEmp.EmployeeID = Convert.ToString(myRow["EmpID"]).TrimEnd();
-                    anEmp.Name = Convert.ToString(myRow["Name"]).TrimEnd();
-                    anEmp.Telephone = Convert.ToString(myRow["Phone"]).TrimEnd();
-                    anEmp.role.getRoleValue = (Role.RoleType)Convert.ToByte(myRow["Role"]);
-                    //Depending on Role read more Values
-
-                    try
+                case "Booking":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
                     {
-                        switch (anEmp.role.getRoleValue)
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
                         {
-                            case Role.RoleType.Headwaiter:
-                                headw = (HeadWaiter)anEmp.role;
-                                headw.SalaryAmount = Convert.ToDecimal(myRow["Salary"]);
-                                break;
-                            case Role.RoleType.Waiter:
-                                waiter = (Waiter)anEmp.role;
-                                waiter.getRate = Convert.ToDecimal(myRow["DayRate"]);
-                                waiter.getShifts = Convert.ToInt32(myRow["NoOfShifts"]);
-                                //was not included so added myslef
-                                waiter.getTips = Convert.ToDecimal(myRow["Tips"]);
-                                break;
-                            case Role.RoleType.Runner:
-                                runner = (Runner)anEmp.role;
-                                runner.getRate = Convert.ToDecimal(myRow["DayRate"]);
-                                runner.getShifts = Convert.ToInt32(myRow["NoOfShifts"]);
-                                // was not included so added myslef
-                                runner.getTips = Convert.ToDecimal(myRow["Tips"]);
-                                break;
+                            booking = new Booking();
+                            booking.Reservation = Convert.ToString(myRow["Reservation"]).TrimEnd();
+                            booking.RoomNumber = Convert.ToString(myRow["roomNumber"]).TrimEnd();
+                            booking.CheckInDate = Convert.ToString(myRow["checkInDate"]).TrimEnd();
+                            booking.CheckOutDate = Convert.ToString(myRow["checkOutDate"]).TrimEnd();
+                            booking.Description = Convert.ToString(myRow["Description"]).TrimEnd();
+                            booking.TotalCost = Convert.ToString(myRow["totalCost"]).TrimEnd();
+                            booking.EmployeeID = Convert.ToString(myRow["EmployeeID"]).TrimEnd();
+                            bookings.Add(booking);
                         }
                     }
-                    catch (Exception err)
-                    {
+                 break;
 
+
+                case "Customer":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            customer = new Customer();
+                            customer.CustomerID = Convert.ToString(myRow["CustomerID"]).TrimEnd();
+                            customer.Name = Convert.ToString(myRow["Name"]).TrimEnd();
+                            customer.EmailAddress = Convert.ToString(myRow["email Address"]).TrimEnd();
+                            customer.Balance = Convert.ToString(myRow["Balance"]).TrimEnd();
+                            customer.Address = Convert.ToString(myRow["Address"]).TrimEnd();
+                            customer.AccountNumber = Convert.ToInt32(myRow["AccountNumber"]);
+                            customer.CustomerBooking = Convert.ToString(myRow["CustomerBooking"]).TrimEnd();
+                            customer.CustomerRoom = Convert.ToString(myRow["CustomerRoom"]).TrimEnd();
+                            customer.ID = Convert.ToString(myRow["ID"]).TrimEnd();
+                            customer.Paymenttype = Convert.ToString(myRow["PaymentType"]).TrimEnd();
+                            customer.Telephone = Convert.ToString(myRow["Telephone"]).TrimEnd();
+                            customers.Add(customer);
+                        }
                     }
-                    employees.Add(anEmp);
-                }
+                    break;
+                case "Employee":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            employee = new Employee();
+                            employee.Name = Convert.ToString(myRow["Name"]).TrimEnd();
+                            employee.ID = Convert.ToString(myRow["ID"]).TrimEnd();
+                            employee.Telephone = Convert.ToString(myRow["Telephone"]).TrimEnd();
+                            employee.EmailAddress = Convert.ToString(myRow["EmailAddress"]).TrimEnd();
+                            employee.Address= Convert.ToString(myRow["Address"]).TrimEnd();
+                            /* Add the extra attributes
+                             * employee. = Convert.ToString(myRow["totalCost"]).TrimEnd();
+                            booking.EmployeeID = Convert.ToString(myRow["EmployeeID"]).TrimEnd();*/
+                            employees.Add(employee);
+                        }
+                    }
+                    break;
+                case "Room":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            room = new Room();
+                            room.RoomNumber = Convert.ToInt32(myRow["roomNumber"]);
+                            room.Cost = Convert.ToString(myRow["Cost"]).TrimEnd();
+                            room.HotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
+                            room.Description = Convert.ToString(myRow["Description"]).TrimEnd();
+                            room.Capacity = Convert.ToInt32(myRow["Capacity"]);
+                            rooms.Add(room);
+                        }
+                    }
+                    break;
+                case "Payment":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            payment = new Payment();
+                            payment.PaymentID = Convert.ToInt32(myRow["PaymentID"]);
+                            payment.Type = Convert.ToString(myRow["Type"]).TrimEnd();
+                            payment.Descriptiom = Convert.ToString(myRow["Description"]).TrimEnd();
+                            payment.Date = Convert.ToString(myRow["Date"]).TrimEnd();
+                            payment.Amount = Convert.ToInt32(myRow["Amount"]);
+                            payments.Add(payment);
+                        }
+                    }
+                    break;
+                case "Invoice":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            invoice = new Invoice();
+                            invoice.PaymentID = Convert.ToInt32(myRow["PaymentID"]);
+                            invoice.InvoiceNumber = Convert.ToString(myRow["InvoiceNumber"]).TrimEnd();
+                            invoice.Description = Convert.ToString(myRow["Description"]).TrimEnd();
+                            invoices.Add(invoice);
+                        }
+                    }
+                    break;
+                case "Hotel":
+                    foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                    {
+                        myRow = myRow_loopVariable;
+                        if (!(myRow.RowState == DataRowState.Deleted))
+                        {
+                            hotel = new Hotel();
+                            hotel.HotelID = Convert.ToInt32(myRow["HotelID"]);
+                            hotel.Location = Convert.ToString(myRow["Location"]).TrimEnd();
+                            hotel.ContactDetails = Convert.ToString(myRow["contactDetails"]).TrimEnd();
+                            invoices.Add(invoice);
+                        }
+                    }
+                    break;
+
+            }
+            //READ from the table  
+            
+                
             }
         }
         private void FillRow(DataRow aRow, Employee anEmp, DBOperation operation)

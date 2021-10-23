@@ -63,11 +63,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Booking.cs" />
     <Compile Include="Business\CustomerController.cs" />
     <Compile Include="Business\Customer.cs" />
     <Compile Include="Business\Employee.cs" />
     <Compile Include="Business\Invoice.cs" />
+    <Compile Include="Business\Payment.cs" />
     <Compile Include="Business\Person.cs" />
+    <Compile Include="Business\Room.cs" />
     <Compile Include="Data\DataBase.cs" />
     <Compile Include="Presentation\Form1.cs">
       <SubType>Form</SubType>

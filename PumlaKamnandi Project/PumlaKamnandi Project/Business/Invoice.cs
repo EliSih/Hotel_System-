@@ -8,18 +8,25 @@ namespace PumlaKamnandi_Project.Business
 {
     class Invoice
     {
-        int invoiceID;
-        String description;
+        #region Data Members
+        private string InvoiceID;
+        private string description;
+        private Payment payment;
+        #endregion
 
-        public int InvoiceID
+        #region Access Modifiers
+        public string getInvoiceDescription
         {
-            get { return invoiceID; }
-            set { invoiceID = value; }
+            get { return description; }
+            set { description = value; }
         }
+        #endregion
 
-        public string Description
+        #region 
+        public string generateInvoice()
         {
-
+            return payment.toString();
         }
+        #endregion
     }
 }
