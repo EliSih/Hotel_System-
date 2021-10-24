@@ -422,7 +422,7 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@email", SqlDbType.NVarChar, 15, "emailAddress");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Balance", SqlDbType.Decimal, 10, "Balance");
+            param = new SqlParameter("@Balance", SqlDbType.Money, 10, "Balance");
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@resID", SqlDbType.Int, 10, "ReservationID");
@@ -454,7 +454,7 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@totalCost", SqlDbType.Decimal, 100, "totalCost");
+            param = new SqlParameter("@totalCost", SqlDbType.Money, 100, "totalCost");
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
@@ -479,7 +479,7 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@EmployeeRole", SqlDbType.NVarChar, 15, "EmployeeRole");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Salary", SqlDbType.Decimal, 10, "Salary");
+            param = new SqlParameter("@Salary", SqlDbType.Money, 10, "Salary");
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@NoOfShifts", SqlDbType.Int, 10, "NoOfShifts");
@@ -521,7 +521,7 @@ namespace PumlaKamnandi_Project.Data
         private void Build_UPDATE_Parameters(Invoice invoice)
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter("@Location ", SqlDbType.NVarChar, 100, "Location ");
+            param = new SqlParameter("@Description", SqlDbType.NVarChar, 100, "Description");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
             // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
@@ -554,7 +554,7 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Amount", SqlDbType.Decimal, 10, "Amount");
+            param = new SqlParameter("@Amount", SqlDbType.Money, 10, "Amount");
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
@@ -582,7 +582,7 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Cost", SqlDbType.Decimal, 10, "Cost");
+            param = new SqlParameter("@Cost", SqlDbType.Money, 10, "Cost");
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@HotelID", SqlDbType.Int, 10, "HotelID");
@@ -591,89 +591,253 @@ namespace PumlaKamnandi_Project.Data
 
         }
 
-        private void Create_UPDATE_Command(Employee anEmp)
+        private void Create_UPDATE_Command(Customer customer)
         {
-            switch (anEmp.role.getRoleValue)
-            {
-                case Role.RoleType.Headwaiter:
-                    daMain.UpdateCommand = new SqlCommand("UPDATE HeadWaiter SET Name =@Name,Phone =@Phone, Role = @Role, Salary =@Salary " + "WHERE ID = @Original_ID", cnMain);
-                    break;
-                //2.6.1 TO DO: -: Do the same for the other tables
-                case Role.RoleType.Waiter:
-                    daMain.UpdateCommand = new SqlCommand("UPDATE Waiter SET Name =@Name,Phone =@Phone, Role = @Role, Tips = @Tips,DayRate = @DayRate,NoOfShifts= @NoOfShifts " + "WHERE ID = @Original_ID", cnMain);
-                    break;
-                case Role.RoleType.Runner:
-                    daMain.UpdateCommand = new SqlCommand("UPDATE Runner SET Name =@Name,Phone =@Phone, Role = @Role, DayRate = @DayRate, NoOfShifts = @NoOfShifts " + "WHERE ID = @Original_ID", cnMain);
-                    break;
-            }
-            //2.6.2 Write the code to call the Build_UPDATE_Parameters method
-            Build_UPDATE_Parameters(anEmp);
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Customer SET Name =@Name,emailAddress =@emailAddress, ReservationID = @ReservationID, Balance = @Balance " + "WHERE CustomerID = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(customer);
         }
 
-        private void Build_INSERT_Parameters(Employee anEmp)
+
+        private void Create_UPDATE_Command(Booking booking)
         {
-            //Create Parameters to communicate with SQL INSERT...add the input parameter and set its properties.
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET roomNumber = @roomNumber ,checkInDate = @checkInDate , checkOutDate = @checkOutDate, Description = @Description, totalCost = @totalCost, employeeID = @employeeID " + "WHERE ReservationID  = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(booking);
+        }
+
+        private void Create_UPDATE_Command(Employee employee)
+        {
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Employee SET Name = @Name ,Salary = @Salary, NoOfShifts  = @NoOfShifts, Supervisor  = @Supervisor , cellNumber  = @cellNumber , ReservationID  = @ReservationID, HotelID   = @HotelID   " + "WHERE employeeID  = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(employee);
+        }
+
+        private void Create_UPDATE_Command(Hotel hotel)
+        {
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Hotel SET Location  = @Location  ,contactDetails  = @contactDetails" + "WHERE HotelID  = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(hotel);
+        }
+
+        private void Create_UPDATE_Command(Invoice invoice)
+        {
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Invoice PaymentID   = @PaymentID , Description = @Description    " + "WHERE invoiceNumber  = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(invoice);
+        }
+
+        private void Create_UPDATE_Command(Payment payment)
+        {
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Payment SET Type = @Type , Description  = @Description , Date   = @Date , Amount   = @Amount  " + "WHERE PaymentID  = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(payment);
+        }
+
+        private void Create_UPDATE_Command(Room room)
+        {
+
+            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET HotelID  = @HotelID  ,Cost  = @Cost , Description   = @Description , Capacity   = @Capacity  " + "WHERE roomNumber   = @Original_ID", cnMain);
+
+            Build_UPDATE_Parameters(room);
+        }
+
+
+        private void Build_INSERT_Parameters(Customer customer)
+        {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter("@ID", SqlDbType.NVarChar, 15, "ID");
-            daMain.InsertCommand.Parameters.Add(param);//Add the parameter to the Parameters collection.
-
-            param = new SqlParameter("@EMPID", SqlDbType.NVarChar, 10, "EMPID");
-            daMain.InsertCommand.Parameters.Add(param);
-
-            //Do the same for Description & answer -ensure that you choose the right size
             param = new SqlParameter("@Name", SqlDbType.NVarChar, 100, "Name");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@CustomerID", SqlDbType.Int, 15, "CustomerID");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Phone", SqlDbType.NVarChar, 15, "Phone");
+            param = new SqlParameter("@email", SqlDbType.NVarChar, 15, "emailAddress");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Role", SqlDbType.TinyInt, 1, "Role");
+            param = new SqlParameter("@Balance", SqlDbType.Money, 10, "Balance");
             daMain.InsertCommand.Parameters.Add(param);
-            switch (anEmp.role.getRoleValue)
-            {
-                case Role.RoleType.Headwaiter:
-                    param = new SqlParameter("@Salary", SqlDbType.Money, 8, "Salary");
-                    daMain.InsertCommand.Parameters.Add(param);
-                    break;
-                case Role.RoleType.Waiter:
-                    param = new SqlParameter("@Tips", SqlDbType.Money, 8, "Tips");
-                    daMain.InsertCommand.Parameters.Add(param);
 
-                    param = new SqlParameter("@DayRate", SqlDbType.Money, 8, "DayRate");
-                    daMain.InsertCommand.Parameters.Add(param);
+            param = new SqlParameter("@resID", SqlDbType.Int, 10, "ReservationID");
+            daMain.InsertCommand.Parameters.Add(param);
 
-                    param = new SqlParameter("@NoOfShifts", SqlDbType.SmallInt, 4, "NoOfShifts");
-                    daMain.InsertCommand.Parameters.Add(param);
-                    break;
-                case Role.RoleType.Runner:
-                    param = new SqlParameter("@DayRate", SqlDbType.Money, 8, "DayRate");
-                    daMain.InsertCommand.Parameters.Add(param);
 
-                    param = new SqlParameter("@NoOfShifts", SqlDbType.SmallInt, 4, "NoOfShifts");
-                    daMain.InsertCommand.Parameters.Add(param);
-                    break;
-            }
+
+        }
+
+         private void Build_INSERT_Parameters(Booking booking)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@roomNumber", SqlDbType.NVarChar, 100, "roomNumber");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@ReservationID", SqlDbType.NVarChar, 15, "ReservationID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@checkInDate", SqlDbType.Date, 15, "checkInDate");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@checkOutDate", SqlDbType.Date, 10, "checkOutDate");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@totalCost", SqlDbType.Money, 100, "totalCost");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+
+        }
+
+        private void Build_INSERT_Parameters(Employee employee)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@Name", SqlDbType.NVarChar, 100, "Name");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@employeeID", SqlDbType.Int, 15, "employeeID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@EmployeeRole", SqlDbType.NVarChar, 15, "EmployeeRole");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Salary", SqlDbType.Money, 10, "Salary");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@NoOfShifts", SqlDbType.Int, 10, "NoOfShifts");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Supervisor", SqlDbType.NVarChar, 50, "Supervisor");
+            daMain.InsertCommand.Parameters.Add(param);
+
+
+            param = new SqlParameter("@cellNumber ", SqlDbType.NVarChar, 10, "cellNumber ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@ReservationID  ", SqlDbType.Int, 10, "ReservationID  ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@HotelID   ", SqlDbType.Int, 10, "HotelID   ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+        }
+
+        private void Build_INSERT_Parameters(Hotel hotel)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@Location ", SqlDbType.NVarChar, 100, "Location ");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@HotelID", SqlDbType.Int, 15, "HotelID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@contactDetails ", SqlDbType.NVarChar, 15, "contactDetails ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+        }
+
+        private void Build_INSERT_Parameters(Invoice invoice)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@PaymentID  ", SqlDbType.NVarChar, 100, "PaymentID");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@invoiceNumber", SqlDbType.Int, 10, "invoiceNumber");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
+            daMain.InsertCommand.Parameters.Add(param);
+
+        }
+
+
+        private void Build_INSERT_Parameters(Payment payment)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@Type", SqlDbType.NVarChar, 100, "Type");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@PaymentID", SqlDbType.NVarChar, 15, "PaymentID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Date", SqlDbType.Date, 1, "Date");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Amount", SqlDbType.Money, 10, "Amount");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
+            daMain.InsertCommand.Parameters.Add(param);
+
+
+        }
+
+
+        private void Build_INSERT_Parameters(Room room)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@Type", SqlDbType.NVarChar, 100, "Type");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+            // 2.5.1 TO DO: -: Do for all fields other than ID and EMPID as for the Build Insert parameters. 
+            //Ofcourse, depending on the role. The code is similar to the Build_INSERT_Parameters that you created
+            param = new SqlParameter("@roomNumber", SqlDbType.NVarChar, 15, "roomNumber");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Capacity", SqlDbType.Int, 1, "Capacity");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Description", SqlDbType.NVarChar, 50, "Description");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Cost", SqlDbType.Money, 10, "Cost");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@HotelID", SqlDbType.Int, 10, "HotelID");
+            daMain.InsertCommand.Parameters.Add(param);
+
 
         }
 
         private void Create_INSERT_Command(Employee anEmp)
         {
-            //Create the command that must be used to insert values into the Books table..
-            switch (anEmp.role.getRoleValue)
-            {
-                case Role.RoleType.Headwaiter:
-                    daMain.InsertCommand = new SqlCommand("INSERT into HeadWaiter (ID, EMPID, Name, Phone, Role, Salary) VALUES (@ID, @EmpID, @Name, @Phone, @Role, @Salary)", cnMain);
-                    break;
-                case Role.RoleType.Waiter:
-                    daMain.InsertCommand = new SqlCommand("INSERT into Waiter (ID, EMPID, Name, Phone, Role, Tips, DayRate, NoOfShifts) VALUES (@ID, @EmpID, @Name, @Phone, @Role, @Tips, @DayRate, @NoOfShifts)", cnMain);
-                    break;
-                case Role.RoleType.Runner:
-                    daMain.InsertCommand = new SqlCommand("INSERT into Runner (ID, EMPID, Name, Phone, Role, DayRate, NoOfShifts) VALUES (@ID, @EmpID, @Name, @Phone, @Role, @DayRate, @NoOfShifts)", cnMain);
-                    break;
-            }
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Runner (ID, EMPID, Name, Phone, Role, DayRate, NoOfShifts) VALUES (@ID, @EmpID, @Name, @Phone, @Role, @DayRate, @NoOfShifts)", cnMain);
             Build_INSERT_Parameters(anEmp);
         }
 
+       
+        
         public bool UpdateDataSource(object obj,string table)
         {
             bool success = true;
