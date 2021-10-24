@@ -39,6 +39,8 @@ namespace PumlaKamnandi_Project
             this.viewCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAvailableRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAllRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -80,14 +82,16 @@ namespace PumlaKamnandi_Project
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // customersToolStripMenuItem
             // 
@@ -103,18 +107,35 @@ namespace PumlaKamnandi_Project
             this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
             this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewCustomersToolStripMenuItem.Text = "View Customers";
+            this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.viewCustomersToolStripMenuItem_Click);
             // 
             // addCustomerToolStripMenuItem
             // 
             this.addCustomerToolStripMenuItem.Name = "addCustomerToolStripMenuItem";
             this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addCustomerToolStripMenuItem.Text = "Add Customer";
+            this.addCustomerToolStripMenuItem.Click += new System.EventHandler(this.addCustomerToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
+            this.roomsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showAvailableRoomToolStripMenuItem,
+            this.showAllRoomsToolStripMenuItem});
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            // 
+            // showAvailableRoomToolStripMenuItem
+            // 
+            this.showAvailableRoomToolStripMenuItem.Name = "showAvailableRoomToolStripMenuItem";
+            this.showAvailableRoomToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.showAvailableRoomToolStripMenuItem.Text = "Show available room";
+            // 
+            // showAllRoomsToolStripMenuItem
+            // 
+            this.showAllRoomsToolStripMenuItem.Name = "showAllRoomsToolStripMenuItem";
+            this.showAllRoomsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.showAllRoomsToolStripMenuItem.Text = "Show all rooms";
             // 
             // toolStrip
             // 
@@ -260,6 +281,8 @@ namespace PumlaKamnandi_Project
         private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewCustomersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustomerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showAvailableRoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showAllRoomsToolStripMenuItem;
     }
 }
 

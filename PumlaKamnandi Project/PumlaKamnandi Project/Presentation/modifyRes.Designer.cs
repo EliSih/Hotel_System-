@@ -135,7 +135,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form4";
-            this.Text = "Form4";
+            this.Text = "Reservation modification";
             this.ResumeLayout(false);
             this.PerformLayout();
 

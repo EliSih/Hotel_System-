@@ -10,6 +10,7 @@ using PumlaKamnandi_Project.Business;
 
 namespace PumlaKamnandi_Project.Data
 {
+    enum DBOperation { Add, Delete, Edit };
     class PhumlaKamnandiDatabase:DataBase
     {
         #region  Data members        
@@ -90,41 +91,41 @@ namespace PumlaKamnandi_Project.Data
             return dsMain;
         }
 
-       /* public int FindRow(object item, string table)
-        {
-            
-            {
-                
-                int rowIndex = 0;
-                
-                DataRow myRow;
-                
-                int returnValue = -1;
-                foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
-                {
-                    
-                    myRow = myRow_loopVariable;
-                   
-                    if (myRow.RowState == System.Data.DataRowState.Deleted)
-                    {
-                        continue;
-                    }
-                    
-                   else
-                    {
-                        if (anEmp.ID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["ID"]))
-                        {
-                            //2.3.7 assign rowIndex to returnValue
-                            returnValue = rowIndex;
-                        }
-                    }
-                    //2.3.8 Increment the rowIndex counter
-                    rowIndex++;
-                }
-                //2.3.9 the method should return the variable returnValue to its caller;
-                return returnValue;
-            }
-        }*/
+        /* public int FindRow(object item, string table)
+         {
+
+             {
+
+                 int rowIndex = 0;
+
+                 DataRow myRow;
+
+                 int returnValue = -1;
+                 foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+                 {
+
+                     myRow = myRow_loopVariable;
+
+                     if (myRow.RowState == System.Data.DataRowState.Deleted)
+                     {
+                         continue;
+                     }
+
+                    else
+                     {
+                         if (anEmp.ID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["ID"]))
+                         {
+                             //2.3.7 assign rowIndex to returnValue
+                             returnValue = rowIndex;
+                         }
+                     }
+                     //2.3.8 Increment the rowIndex counter
+                     rowIndex++;
+                 }
+                 //2.3.9 the method should return the variable returnValue to its caller;
+                 return returnValue;
+             }
+         }*/
         private void Add2Collection(string table)
         {
             //Declare references to a myRow object and an Employee object
@@ -136,7 +137,7 @@ namespace PumlaKamnandi_Project.Data
             Payment payment;
             Room room;
             Booking booking;
-            
+
             switch (table)
             {
                 case "Booking":
@@ -156,7 +157,7 @@ namespace PumlaKamnandi_Project.Data
                             bookings.Add(booking);
                         }
                     }
-                 break;
+                    break;
 
 
                 case "Customer":
@@ -172,8 +173,8 @@ namespace PumlaKamnandi_Project.Data
                             customer.Balance = Convert.ToString(myRow["Balance"]).TrimEnd();
                             customer.Address = Convert.ToString(myRow["Address"]).TrimEnd();
                             customer.AccountNumber = Convert.ToInt32(myRow["AccountNumber"]);
-                            customer.CustomerBooking = Convert.ToString(myRow["CustomerBooking"]).TrimEnd();
-                            customer.CustomerRoom = Convert.ToString(myRow["CustomerRoom"]).TrimEnd();
+                            customer.BookingID = Convert.ToString(myRow["CustomerBooking"]).TrimEnd();
+                            customer.CustomerRoomID = Convert.ToString(myRow["CustomerRoom"]).TrimEnd();
                             customer.ID = Convert.ToString(myRow["ID"]).TrimEnd();
                             customer.Paymenttype = Convert.ToString(myRow["PaymentType"]).TrimEnd();
                             customer.Telephone = Convert.ToString(myRow["Telephone"]).TrimEnd();
@@ -192,7 +193,7 @@ namespace PumlaKamnandi_Project.Data
                             employee.ID = Convert.ToString(myRow["ID"]).TrimEnd();
                             employee.Telephone = Convert.ToString(myRow["Telephone"]).TrimEnd();
                             employee.EmailAddress = Convert.ToString(myRow["EmailAddress"]).TrimEnd();
-                            employee.Address= Convert.ToString(myRow["Address"]).TrimEnd();
+                            employee.Address = Convert.ToString(myRow["Address"]).TrimEnd();
                             /* Add the extra attributes
                              * employee. = Convert.ToString(myRow["totalCost"]).TrimEnd();
                             booking.EmployeeID = Convert.ToString(myRow["EmployeeID"]).TrimEnd();*/
@@ -207,11 +208,11 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             room = new Room();
-                            room.RoomNumber = Convert.ToInt32(myRow["roomNumber"]);
-                            room.Cost = Convert.ToString(myRow["Cost"]).TrimEnd();
-                            room.HotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
-                            room.Description = Convert.ToString(myRow["Description"]).TrimEnd();
-                            room.Capacity = Convert.ToInt32(myRow["Capacity"]);
+                            room.getRoomNumber = Convert.ToInt32(myRow["roomNumber"]);
+                            room.getPrice = Convert.ToDecimal(myRow["Cost"]);
+                            //room.getHotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
+                            room.getDescription = Convert.ToString(myRow["Description"]).TrimEnd();
+                            room.getCapacity = Convert.ToInt32(myRow["Capacity"]);
                             rooms.Add(room);
                         }
                     }
@@ -223,11 +224,11 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             payment = new Payment();
-                            payment.PaymentID = Convert.ToInt32(myRow["PaymentID"]);
+                            payment.ID1 = Convert.ToInt32(myRow["PaymentID"]);
                             payment.Type = Convert.ToString(myRow["Type"]).TrimEnd();
-                            payment.Descriptiom = Convert.ToString(myRow["Description"]).TrimEnd();
+                            payment.Description = Convert.ToString(myRow["Description"]).TrimEnd();
                             payment.Date = Convert.ToString(myRow["Date"]).TrimEnd();
-                            payment.Amount = Convert.ToInt32(myRow["Amount"]);
+                            payment.Amount1 = Convert.ToDecimal(myRow["Amount"]);
                             payments.Add(payment);
                         }
                     }
@@ -239,8 +240,8 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             invoice = new Invoice();
-                            invoice.PaymentID = Convert.ToInt32(myRow["PaymentID"]);
-                            invoice.InvoiceNumber = Convert.ToString(myRow["InvoiceNumber"]).TrimEnd();
+                            invoice.Payment = Convert.ToInt32(myRow["PaymentID"]);
+                            invoice.InvoiceID1 = Convert.ToString(myRow["InvoiceNumber"]).TrimEnd();
                             invoice.Description = Convert.ToString(myRow["Description"]).TrimEnd();
                             invoices.Add(invoice);
                         }
@@ -256,82 +257,138 @@ namespace PumlaKamnandi_Project.Data
                             hotel.HotelID = Convert.ToInt32(myRow["HotelID"]);
                             hotel.Location = Convert.ToString(myRow["Location"]).TrimEnd();
                             hotel.ContactDetails = Convert.ToString(myRow["contactDetails"]).TrimEnd();
-                            invoices.Add(invoice);
+                            hotels.Add(hotel);
                         }
                     }
                     break;
 
-            }
-            //READ from the table  
-            
-                
-            }
-        }
-        private void FillRow(DataRow aRow, Employee anEmp, DBOperation operation)
-        {
-            HeadWaiter headwaiter;
-            Runner runner;
-            Waiter waiter;
-            if (operation == DBOperation.Add)
-            {
-                aRow["ID"] = anEmp.ID;  //NOTE square brackets to indicate index of collections of fields in row.
-                aRow["EmpID"] = anEmp.EmployeeID;
-            }
 
-            aRow["Name"] = anEmp.Name;
-            aRow["Phone"] = anEmp.Telephone;
-            aRow["Role"] = (byte)anEmp.role.getRoleValue;
-            //*** For each role add the specific data variables
-            switch (anEmp.role.getRoleValue)
+            }
+            //READ from the table  ;
+
+
+        }
+    
+        
+        private void FillRow(DataRow aRow, object obj, DBOperation operation,string table)
+        {
+            Customer customer;
+            Employee employee;
+            Invoice invoice;
+            Hotel hotel;
+            Payment payment;
+            Room room;
+            Booking booking;
+
+            switch (table)
             {
-                case Role.RoleType.Headwaiter:
-                    headwaiter = (HeadWaiter)anEmp.role;
-                    aRow["Salary"] = headwaiter.SalaryAmount;
+                case "Booking":
+                    booking = obj as Booking;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["ReservationID"] = booking.ReservationID;
+                    }
+                    aRow["roomNumber"] = booking.RoomNumber;
+                    aRow["checkInDate"] = booking.CheckInDate;
+                    aRow["checkOutDate"] = booking.CheckOutDate;
+                    aRow["Description"] = booking.Description;
+                    aRow["totalCost"]=booking.TotalCost;
+                    aRow["EmployeeID"] = booking.EmployeeID;
                     break;
-                case Role.RoleType.Waiter:
-                    waiter = (Waiter)anEmp.role;
-                    aRow["DayRate"] = waiter.getRate;
-                    aRow["NoOfShifts"] = waiter.getShifts;
-                    aRow["Tips"] = waiter.getTips;
+                case "Customer":
+                    customer = obj as Customer;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["CustomerID"] = customer.CustomerID;
+                    }
+                    aRow["Name"] = customer.Name;
+                    aRow["email Address"] = customer.EmailAddress;
+                    aRow["Balance"] = customer.Balance;
+                    aRow["Address"] = customer.Address;
+                    aRow["AccountNumber"] = customer.AccountNumber;
+                    aRow["CustomerBooking"] = customer.BookingID;
+                    aRow["CustomerRoom"] = customer.CustomerRoomID;
+                    aRow["ID"] = customer.ID;
+                    aRow["PaymentType"] = customer.Paymenttype;
+                    aRow["Telephone"] = customer.Telephone;
                     break;
-                case Role.RoleType.Runner:
-                    runner = (Runner)anEmp.role;
-                    aRow["DayRate"] = runner.getRate;
-                    aRow["NoOfShifts"] = runner.getShifts;
-                    aRow["Tips"] = runner.getTips;
+                case "Employee":
+                    employee = obj as Employee;
+
+                    aRow["Name"] = employee.Name;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["ID"] = employee.ID;
+                    }
+                    aRow["Telephone"] = employee.Telephone;
+                    aRow["EmailAddress"] = employee.EmailAddress;
+                    aRow["Address"] = employee.Address;
+                    /* Add the extra attributes
+                        * employee. = Convert.ToString(myRow["totalCost"]).TrimEnd();
+                    booking.EmployeeID = Convert.ToString(myRow["EmployeeID"]).TrimEnd();*/
                     break;
+                case "Room":
+                    room = obj as Room;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["roomNumber"] = room.getRoomNumber;
+                    }
+                    aRow["Cost"] = room.getPrice;
+                    //room.getHotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
+                    aRow["Description"] = room.getDescription;
+                    aRow["Capacity"] = room.getCapacity;
+                    break;
+                case "Payment":
+                    payment = obj as Payment;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["PaymentID"] = payment.ID1;
+                    }
+                    aRow["Type"] = payment.Type;
+                    aRow["Description"] = payment.Description;
+                    aRow["Date"] = payment.Date;
+                    aRow["Amount"] =payment.Amount1;
+                    break;
+                case "Invoice":
+                    invoice = obj as Invoice;
+                    aRow["PaymentID"] = invoice.Payment;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["InvoiceNumber"] = invoice.InvoiceID1;
+                    }
+                    aRow["Description"] = invoice.Description;
+                    break;
+                case "Hotel":
+                    hotel = obj as Hotel;
+                    if (operation == DBOperation.Add)
+                    {
+                        aRow["HotelID"] = hotel.HotelID;
+                    }
+                    aRow["Location"] = hotel.Location;
+                    aRow["contactDetails"] = hotel.ContactDetails;
+                    break;
+
+
             }
         }
         #endregion
 
         #region Database Operations CRUD
-        public void DataSetChange(Employee anEmp, DBOperation operation)
+        public void DataSetChange(object obj, DBOperation operation,string table)
         {
             DataRow aRow = null;
-            string dataTable = table1;
-            switch (anEmp.role.getRoleValue)
-            {
-                case Role.RoleType.Headwaiter:
-                    dataTable = table1;
-                    break;
-                case Role.RoleType.Waiter:
-                    dataTable = table2;
-                    break;
-                case Role.RoleType.Runner:
-                    dataTable = table3;
-                    break;
-            }
+            string dataTable = table;
             switch (operation)
             {
                 case DBOperation.Add:
                     aRow = dsMain.Tables[dataTable].NewRow();
-                    FillRow(aRow, anEmp, operation);
+                    FillRow(aRow, obj, operation,table);
                     dsMain.Tables[dataTable].Rows.Add(aRow); //Add to the dataset
                     break;
                 case DBOperation.Edit:
                     // For the Edit section you have to find a row instead of creating a new row. 
                     aRow = dsMain.Tables[dataTable].Rows[FindRow(anEmp, dataTable)];
-                    FillRow(aRow, anEmp, operation);
+                    FillRow(aRow, obj, operation, table);
                     break;
                 //2.4.1 Write the code to Fill this row for the Edit operation by calling the FillRow method
                 case DBOperation.Delete:
@@ -476,7 +533,7 @@ namespace PumlaKamnandi_Project.Data
             Build_INSERT_Parameters(anEmp);
         }
 
-        public bool UpdateDataSource(Employee anEmp)
+        public bool UpdateDataSource(object obj,string table)
         {
             bool success = true;
             Create_INSERT_Command(anEmp);
