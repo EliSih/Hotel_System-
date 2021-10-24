@@ -9,7 +9,7 @@ namespace PumlaKamnandi_Project.Business
     class Invoice
     {
         #region Data Members
-        private string InvoiceID;
+        private int invoiceID;
         private string description;
         private int paymentID;
         #endregion
@@ -22,16 +22,17 @@ namespace PumlaKamnandi_Project.Business
             set { Description = value; }
         }
 
-        public string InvoiceID1 { get => InvoiceID; set => InvoiceID = value; }
+        public int InvoiceID { get => InvoiceID; set => InvoiceID = value; }
         public string Description { get => description; set => description = value; }
         internal int Payment { get => paymentID; set => paymentID = value; }
         #endregion
 
-        #region 
+        #region
+       /*
         public string generateInvoice()
         {
             return Payment.toString();
-        }
+        }*/
         #endregion
     }
 }

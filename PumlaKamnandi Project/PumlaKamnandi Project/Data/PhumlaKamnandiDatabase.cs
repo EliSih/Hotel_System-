@@ -348,7 +348,51 @@ namespace PumlaKamnandi_Project.Data
                 if (!(myRow.RowState == DataRowState.Deleted))
                 {
                     //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
-                    if (payment. == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["ReservationID"]))
+                    if (payment.paymentID == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["PaymentID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
+        private int FindRow(Invoice invoice, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (invoice.InvoiceID == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["invoiceNumber"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
+        private int FindRow(Room room, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (room. == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["invoiceNumber"]))
                     {
                         returnValue = rowIndex;
                     }

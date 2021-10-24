@@ -16,25 +16,25 @@ namespace PumlaKamnandi_Project.Business
         #endregion
 
         #region Access Modifiers 
-        public int getRoomNumber
+        public int RoomNumber
         {
             get { return roomNumber; }
             set { roomNumber = value; }
         }
 
-        public decimal getPrice
+        public decimal Price
         {
             get { return price; }
             set { price = value; }
         }
 
-        public string getDescription
+        public string Description
         {
             get { return description; }
             set { description = value; }
         }
 
-        public int getCapacity
+        public int Capacity
         {
             get { return capacity; }
             set { capacity = value; }
