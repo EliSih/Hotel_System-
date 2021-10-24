@@ -208,11 +208,11 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             room = new Room();
-                            room.getRoomNumber = Convert.ToInt32(myRow["roomNumber"]);
-                            room.getPrice = Convert.ToDecimal(myRow["Cost"]);
+                            room.RoomNumber = Convert.ToInt32(myRow["roomNumber"]);
+                            room.Price = Convert.ToDecimal(myRow["Cost"]);
                             //room.getHotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
-                            room.getDescription = Convert.ToString(myRow["Description"]).TrimEnd();
-                            room.getCapacity = Convert.ToInt32(myRow["Capacity"]);
+                            room.Description = Convert.ToString(myRow["Description"]).TrimEnd();
+                            room.Capacity = Convert.ToInt32(myRow["Capacity"]);
                             rooms.Add(room);
                         }
                     }
@@ -224,7 +224,7 @@ namespace PumlaKamnandi_Project.Data
                         if (!(myRow.RowState == DataRowState.Deleted))
                         {
                             payment = new Payment();
-                            payment.ID1 = Convert.ToInt32(myRow["PaymentID"]);
+                            payment.paymentID = Convert.ToInt32(myRow["PaymentID"]);
                             payment.Type = Convert.ToString(myRow["Type"]).TrimEnd();
                             payment.Description = Convert.ToString(myRow["Description"]).TrimEnd();
                             payment.Date = Convert.ToString(myRow["Date"]).TrimEnd();
@@ -241,7 +241,7 @@ namespace PumlaKamnandi_Project.Data
                         {
                             invoice = new Invoice();
                             invoice.Payment = Convert.ToInt32(myRow["PaymentID"]);
-                            invoice.InvoiceID1 = Convert.ToString(myRow["InvoiceNumber"]).TrimEnd();
+                            invoice.InvoiceID = Convert.ToInt32(myRow["InvoiceNumber"]);
                             invoice.Description = Convert.ToString(myRow["Description"]).TrimEnd();
                             invoices.Add(invoice);
                         }
@@ -392,7 +392,7 @@ namespace PumlaKamnandi_Project.Data
                 if (!(myRow.RowState == DataRowState.Deleted))
                 {
                     //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
-                    if (room. == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["invoiceNumber"]))
+                    if (room.RoomNumber == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["roomNumber"]))
                     {
                         returnValue = rowIndex;
                     }
@@ -463,18 +463,18 @@ namespace PumlaKamnandi_Project.Data
                     room = obj as Room;
                     if (operation == DBOperation.Add)
                     {
-                        aRow["roomNumber"] = room.getRoomNumber;
+                        aRow["roomNumber"] = room.RoomNumber;
                     }
-                    aRow["Cost"] = room.getPrice;
+                    aRow["Cost"] = room.Price;
                     //room.getHotelID = Convert.ToString(myRow["HotelID"]).TrimEnd();
-                    aRow["Description"] = room.getDescription;
-                    aRow["Capacity"] = room.getCapacity;
+                    aRow["Description"] = room.Description;
+                    aRow["Capacity"] = room.Capacity;
                     break;
                 case "Payment":
                     payment = obj as Payment;
                     if (operation == DBOperation.Add)
                     {
-                        aRow["PaymentID"] = payment.ID1;
+                        aRow["PaymentID"] = payment.paymentID;
                     }
                     aRow["Type"] = payment.Type;
                     aRow["Description"] = payment.Description;
@@ -486,7 +486,7 @@ namespace PumlaKamnandi_Project.Data
                     aRow["PaymentID"] = invoice.Payment;
                     if (operation == DBOperation.Add)
                     {
-                        aRow["InvoiceNumber"] = invoice.InvoiceID1;
+                        aRow["InvoiceNumber"] = invoice.InvoiceID;
                     }
                     aRow["Description"] = invoice.Description;
                     break;
@@ -506,35 +506,161 @@ namespace PumlaKamnandi_Project.Data
         #endregion
 
         #region Database Operations CRUD
-        public void DataSetChange(object obj, DBOperation operation,string table)
+        public void DataSetChange(Employee anEmp, DataBase.DBOperation operation)
         {
             DataRow aRow = null;
-            string dataTable = table;
+            string dataTable = tableEmployee;
             switch (operation)
             {
-                case DBOperation.Add:
+                case DataBase.DBOperation.Add:
                     aRow = dsMain.Tables[dataTable].NewRow();
-                    FillRow(aRow, obj, operation,table);
-                    dsMain.Tables[dataTable].Rows.Add(aRow); //Add to the dataset
+                    FillRow(aRow, anEmp, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    //Add to the dataset
                     break;
-                case DBOperation.Edit:
-                    // For the Edit section you have to find a row instead of creating a new row. 
+                case DataBase.DBOperation.Edit:
+                    // For the Edit section you have to find a row instead of creating a new row.
                     aRow = dsMain.Tables[dataTable].Rows[FindRow(anEmp, dataTable)];
-                    FillRow(aRow, obj, operation, table);
+                    //Fill this row for the Edit operation by calling the FillRow method
+                    FillRow(aRow, anEmp, operation, dataTable);
                     break;
-                //2.4.1 Write the code to Fill this row for the Edit operation by calling the FillRow method
-                case DBOperation.Delete:
+                case DataBase.DBOperation.Delete:
                     aRow = dsMain.Tables[dataTable].Rows[FindRow(anEmp, dataTable)];
-                    //FillRow(aRow, anEmp, operation);
-                    dsMain.Tables[dataTable].Rows.Remove(aRow);
-                    break;
-                default:
+                    aRow.Delete();
                     break;
             }
-            /*aRow = dsMain.Tables[dataTable].NewRow();
-            FillRow(aRow, anEmp);
-            dsMain.Tables[dataTable].Rows.Add(aRow);  //Add to the dataset*/
+          
         }
+
+        public void DataSetChange(Customer customer, DataBase.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable = customerTable;
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, customer, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(customer, dataTable)];
+                    FillRow(aRow, customer, operation, dataTable);
+                    break;
+                case DataBase.DBOperation.Delete:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(customer, dataTable)];
+                    aRow.Delete();
+                    break;
+            }
+
+        }
+
+        public void DataSetChange(Booking booking, DataBase.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable = tableBooking;
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, booking, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    //Add to the dataset
+                    break;
+                case DataBase.DBOperation.Edit:
+                    // For the Edit section you have to find a row instead of creating a new row.
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(booking, dataTable)];
+                    //Fill this row for the Edit operation by calling the FillRow method
+                    FillRow(aRow, booking, operation, dataTable);
+                    break;
+                case DataBase.DBOperation.Delete:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(booking, dataTable)];
+                    aRow.Delete();
+                    break;
+            }
+
+        }
+
+        public void DataSetChange(Invoice invoice, DataBase.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable = tableInvoice;
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, invoice, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    //Add to the dataset
+                    break;
+                case DataBase.DBOperation.Edit:
+                    // For the Edit section you have to find a row instead of creating a new row.
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(invoice, dataTable)];
+                    //Fill this row for the Edit operation by calling the FillRow method
+                    FillRow(aRow, invoice, operation, dataTable);
+                    break;
+                case DataBase.DBOperation.Delete:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(invoice, dataTable)];
+                    aRow.Delete();
+                    break;
+            }
+
+        }
+
+
+        public void DataSetChange(Payment payment, DataBase.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable = tablePayment;
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, payment, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    //Add to the dataset
+                    break;
+                case DataBase.DBOperation.Edit:
+                    // For the Edit section you have to find a row instead of creating a new row.
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(payment, dataTable)];
+                    //Fill this row for the Edit operation by calling the FillRow method
+                    FillRow(aRow, payment, operation, dataTable);
+                    break;
+                case DataBase.DBOperation.Delete:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(payment, dataTable)];
+                    aRow.Delete();
+                    break;
+            }
+
+        }
+
+        public void DataSetChange(Room room, DataBase.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable = tableRoom;
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, room, operation, dataTable);
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    //Add to the dataset
+                    break;
+                case DataBase.DBOperation.Edit:
+                    // For the Edit section you have to find a row instead of creating a new row.
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(room, dataTable)];
+                    //Fill this row for the Edit operation by calling the FillRow method
+                    FillRow(aRow, room, operation, dataTable);
+                    break;
+                case DataBase.DBOperation.Delete:
+                    aRow = dsMain.Tables[dataTable].Rows[FindRow(room, dataTable)];
+                    aRow.Delete();
+                    break;
+            }
+
+        }
+
+
         #endregion
 
         #region Build Parameters, Create Commands & Update database
