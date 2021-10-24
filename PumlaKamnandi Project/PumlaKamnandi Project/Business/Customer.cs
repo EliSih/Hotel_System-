@@ -13,8 +13,8 @@ namespace PumlaKamnandi_Project.Data
     {
         #region data field
         private string customerID;
-        private Booking booking;
-        private Room room;
+        private string booking;
+        private string room;
         private int accountNumber;
         private string PaymentType;
         private string description;
@@ -40,12 +40,12 @@ namespace PumlaKamnandi_Project.Data
             get { return balance; }
             set { balance = value; }
         }
-        public Booking CustomerBooking
+        public string BookingID
         {
             get { return booking; }
             set { booking = value; }
         }
-        public Room CustomerRoom
+        public string CustomerRoomID
         {
             get { return room; }
             set { room = value; }
