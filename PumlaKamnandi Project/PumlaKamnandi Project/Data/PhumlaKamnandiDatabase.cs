@@ -829,6 +829,15 @@ namespace PumlaKamnandi_Project.Data
 
         }
 
+        private void Build_DELETE_Parameters()
+        {
+            //--Create Parameters to communicate with SQL DELETE
+            SqlParameter param;
+            param = new SqlParameter("@ReservationID", SqlDbType.NVarChar, 15, "ReservationID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.DeleteCommand.Parameters.Add(param);
+        }
+
         private void Create_INSERT_Command(Customer customer)
         {
             //Create the command that must be used to insert values into the Books table..   
@@ -875,12 +884,12 @@ namespace PumlaKamnandi_Project.Data
             Build_INSERT_Parameters(room);
         }
 
-
-        public bool UpdateDataSource(object obj,string table)
+        public bool UpdateDataSource(Employee anEmp)
         {
             bool success = true;
-            Create_INSERT_Command(customer);
+            Create_INSERT_Command(anEmp);
             Create_UPDATE_Command(anEmp);
+            Create_DELETE_Command(anEmp);
             switch (anEmp.role.getRoleValue)
             {
                 case Role.RoleType.Headwaiter:
@@ -893,7 +902,6 @@ namespace PumlaKamnandi_Project.Data
                     success = UpdateDataSource(sqlLocal3, table3);
                     break;
             }
-
             return success;
         }
 
