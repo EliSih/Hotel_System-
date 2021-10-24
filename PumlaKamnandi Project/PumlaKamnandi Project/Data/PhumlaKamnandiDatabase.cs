@@ -829,19 +829,57 @@ namespace PumlaKamnandi_Project.Data
 
         }
 
-        private void Create_INSERT_Command(Employee anEmp)
+        private void Create_INSERT_Command(Customer customer)
         {
             //Create the command that must be used to insert values into the Books table..   
-            daMain.InsertCommand = new SqlCommand("INSERT into Runner (ID, EMPID, Name, Phone, Role, DayRate, NoOfShifts) VALUES (@ID, @EmpID, @Name, @Phone, @Role, @DayRate, @NoOfShifts)", cnMain);
-            Build_INSERT_Parameters(anEmp);
+            daMain.InsertCommand = new SqlCommand("INSERT into Customer (CustomerID, Name, emailAddress, ReservationID  , Balance) VALUES (@CustomerID, @Name, @emailAddress, @ReservationID  , @Balance)", cnMain);
+            Build_INSERT_Parameters(customer);
         }
 
-       
-        
+        private void Create_INSERT_Command(Booking booking)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Customer (ReservationID , roomNumber , checkInDate , checkOutDate   , Description, totalCost, employeeID) VALUES (@ReservationID , @roomNumber , @checkInDate , @checkOutDate   , @Description, @totalCost, @employeeID)", cnMain);
+            Build_INSERT_Parameters(booking);
+        }
+        private void Create_INSERT_Command(Employee employee)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Employee (employeeID , Name, EmployeeRole , Salary   , NoOfShifts , Supervisor,cellNumber , ReservationID ,HotelID) VALUES (@employeeID , @Name, @EmployeeRole , @Salary   , @NoOfShifts , @Supervisor, @cellNumber , @ReservationID , @HotelID)", cnMain);
+            Build_INSERT_Parameters(employee);
+        }
+        private void Create_INSERT_Command(Hotel hotel)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Hotel (HotelID , Location , contactDetails) VALUES (@HotelID , @Location , @contactDetails)", cnMain);
+            Build_INSERT_Parameters(hotel);
+        }
+        private void Create_INSERT_Command(Invoice invoice)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Invoice (invoiceNumber, PaymentID  , Description) VALUES (@invoiceNumber, @PaymentID  , @Description)", cnMain);
+            Build_INSERT_Parameters(invoice);
+        }
+
+        private void Create_INSERT_Command(Payment payment)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Payment (PaymentID, Type   , Description, Date, Amount ) VALUES (@PaymentID, @Type   , @Description, @Date, @Amount )", cnMain);
+            Build_INSERT_Parameters(payment);
+        }
+
+        private void Create_INSERT_Command(Room room)
+        {
+            //Create the command that must be used to insert values into the Books table..   
+            daMain.InsertCommand = new SqlCommand("INSERT into Room (roomNumber , HotelID    , Cost , Description , Capacity ) VALUES (@roomNumber , @HotelID   , @Cost , @Description , @Capacity )", cnMain);
+            Build_INSERT_Parameters(room);
+        }
+
+
         public bool UpdateDataSource(object obj,string table)
         {
             bool success = true;
-            Create_INSERT_Command(anEmp);
+            Create_INSERT_Command(customer);
             Create_UPDATE_Command(anEmp);
             switch (anEmp.role.getRoleValue)
             {
