@@ -16,13 +16,13 @@ namespace PumlaKamnandi_Project.Business
 
 
         #region Access Modifiers
-        public string getInvoiceDescription
+        public string InvoiceDescription
         {
             get { return Description; }
             set { Description = value; }
         }
 
-        public int InvoiceID { get => InvoiceID; set => InvoiceID = value; }
+        public int InvoiceID { get => invoiceID; set => invoiceID = value; }
         public string Description { get => description; set => description = value; }
         internal int Payment { get => paymentID; set => paymentID = value; }
         #endregion
