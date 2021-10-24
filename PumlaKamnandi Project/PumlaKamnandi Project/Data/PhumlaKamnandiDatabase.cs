@@ -884,24 +884,103 @@ namespace PumlaKamnandi_Project.Data
             Build_INSERT_Parameters(room);
         }
 
-        public bool UpdateDataSource(Employee anEmp)
+        private string Create_DELETE_Command(Booking booking)
+        {
+            string errorString = null;
+            daMain.DeleteCommand = new SqlCommand("DELETE FROM Booking WHERE ReservationID = @ReservationID", cnMain);
+            try
+            {
+                Build_DELETE_Parameters();
+            }
+            catch (Exception errObj)
+            {
+                errorString = errObj.Message + "  " + errObj.StackTrace;
+            }
+            return errorString;
+        }
+
+        public bool UpdateDataSource(Customer customer)
         {
             bool success = true;
-            Create_INSERT_Command(anEmp);
-            Create_UPDATE_Command(anEmp);
-            Create_DELETE_Command(anEmp);
-            switch (anEmp.role.getRoleValue)
-            {
-                case Role.RoleType.Headwaiter:
-                    success = UpdateDataSource(sqlLocal1, table1);
-                    break;
-                case Role.RoleType.Waiter:
-                    success = UpdateDataSource(sqlLocal2, table2);
-                    break;
-                case Role.RoleType.Runner:
-                    success = UpdateDataSource(sqlLocal3, table3);
-                    break;
-            }
+            Create_INSERT_Command(customer);
+            Create_UPDATE_Command(customer);
+           //Create_DELETE_Command(customer);
+
+            success = UpdateDataSource(sqlLocalCustomer, customerTable);
+           
+            return success;
+        }
+
+        public bool UpdateDataSource(Employee employee)
+        {
+            bool success = true;
+            Create_INSERT_Command(employee);
+            Create_UPDATE_Command(employee);
+            //Create_DELETE_Command(employee);
+
+            success = UpdateDataSource(sqlLocalEmployee, tableEmployee);
+
+            return success;
+        }
+
+        
+        public bool UpdateDataSource(Booking booking)
+        {
+            bool success = true;
+            Create_INSERT_Command(booking);
+            Create_UPDATE_Command(booking);
+            //Create_DELETE_Command(booking);
+
+            success = UpdateDataSource(sqlLocalBooking, tableBooking);
+
+            return success;
+        }
+
+        public bool UpdateDataSource(Hotel hotel)
+        {
+            bool success = true;
+            Create_INSERT_Command(hotel);
+            Create_UPDATE_Command(hotel);
+            //Create_DELETE_Command(hotel);
+
+            success = UpdateDataSource(sqlLocalHotel, tableHotel);
+
+            return success;
+        }
+
+        public bool UpdateDataSource(Invoice invoice)
+        {
+            bool success = true;
+            Create_INSERT_Command(invoice);
+            Create_UPDATE_Command(invoice);
+            //Create_DELETE_Command(invoice);
+
+            success = UpdateDataSource(sqlLocalInvoice, tableInvoice);
+
+            return success;
+        }
+
+        public bool UpdateDataSource(Payment payment)
+        {
+            bool success = true;
+            Create_INSERT_Command(payment);
+            Create_UPDATE_Command(payment);
+            //Create_DELETE_Command(payment);
+
+            success = UpdateDataSource(sqlLocalPayment, tablePayment);
+
+            return success;
+        }
+
+        public bool UpdateDataSource(Room room)
+        {
+            bool success = true;
+            Create_INSERT_Command(room);
+            Create_UPDATE_Command(room);
+            //Create_DELETE_Command(room);
+
+            success = UpdateDataSource(sqlLocalRoom, tableRoom);
+
             return success;
         }
 
