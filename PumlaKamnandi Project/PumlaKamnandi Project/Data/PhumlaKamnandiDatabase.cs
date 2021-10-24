@@ -268,8 +268,96 @@ namespace PumlaKamnandi_Project.Data
 
 
         }
-    
-        
+
+
+        private int FindRow(Employee employee, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (employee.EmployeeID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["employeeID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
+        private int FindRow(Customer customer, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (customer.CustomerID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["CustomerID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
+        private int FindRow(Booking booking, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (booking.ReservationID == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["ReservationID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
+        private int FindRow(Payment payment, string table)
+        {
+            int rowIndex = 0;
+            DataRow myRow;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                //Ignore rows marked as deleted in dataset
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    //In c# there is no item property (but we use the 2-dim array) it is automatically known to the compiler when used as below
+                    if (payment. == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["ReservationID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+                }
+                rowIndex += 1;
+            }
+            return returnValue;
+        }
+
         private void FillRow(DataRow aRow, object obj, DBOperation operation,string table)
         {
             Customer customer;

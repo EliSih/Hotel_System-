@@ -9,13 +9,13 @@ namespace PumlaKamnandi_Project.Data
     class Employee : Person
     {
         #region data fields
-        private string EmployeeID;
+        private string employeeID;
         #endregion
         #region method
-        public string getEmployeeID
+        public string EmployeeID
         {
-            get { return EmployeeID; }
-            set { EmployeeID = value; }
+            get { return employeeID; }
+            set { employeeID = value; }
         }
         //public Employee() { }
         #endregion
