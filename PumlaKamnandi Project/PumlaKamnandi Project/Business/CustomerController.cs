@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using PumlaKamnandi_Project.Data;
 
+
 namespace PumlaKamnandi_Project.Business
 {
     class CustomerController
@@ -48,105 +49,173 @@ namespace PumlaKamnandi_Project.Business
         #endregion
 
         #region Database Communication.
-        public void DataMaintenance(object obj, DataBase.DBOperation operation, string table)
+        public void DataMaintenance(Employee employee, DataBase.DBOperation operation)
         {
             int index = 0;
-            phumlaKamnandiDB.DataSetChange(obj, operation,table);
-            //employees.Add(anEmp);
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(employee, operation);
+            //perform operations on the collection
             switch (operation)
             {
                 case DataBase.DBOperation.Add:
-                    switch (table)
-                    {
-                        case "Booking":
-                            bookings.Add(obj as Booking);
-                            break;
-
-
-                        case "Customer":
-                            customers.Add(obj as Customer);
-                            break;
-                        case "Employee":
-                            employees.Add(obj as Employee);
-                            break;
-                        case "Room":
-                            rooms.Add(obj as Room);
-                            break;
-                        case "Payment":
-                            payments.Add(obj as Payment);
-                            break;
-                        case "Invoice":
-                            invoices.Add(obj as Invoice);
-                            break;
-                        case "Hotel":
-                            hotels.Add(obj as Hotel);
-                            break;
-                    }
+                    //*** Add the employee to the Collection
+                    employees.Add(employee);
                     break;
                 case DataBase.DBOperation.Edit:
-                    index = FindIndex(obj, table);
-                    switch (table)
-                    {
-                        case "Booking":
-                            bookings[index] = obj as Booking;
-                            break;
-
-
-                        case "Customer":
-                            customers[index] = obj as Customer;
-                            break;
-                        case "Employee":
-                            employees[index] = obj as Employee;
-                            break;
-                        case "Room":
-                            rooms[index] = obj as Room;
-                            break;
-                        case "Payment":
-                            payments[index] = obj as Payment;
-                            break;
-                        case "Invoice":
-                            invoices[index] = obj as Invoice;
-                            break;
-                        case "Hotel":
-                            hotels[index] = obj as Hotel;
-                            break;
-                    }
+                    index = FindIndex(employee, "Employee");
+                    employees[index] = employee;  // replace employee at this index with the updated employee
                     break;
                 case DataBase.DBOperation.Delete:
-                    index = FindIndex(obj, table);
-                    if (index < 0) return;
-                    switch (table)
-                    {
-                        case "Booking":
-                            bookings.RemoveAt(index);
-                            break;
-                        case "Customer":
-                            customers.RemoveAt(index);
-                            break;
-                        case "Employee":
-                            employees.RemoveAt(index);
-                            break;
-                        case "Room":
-                            rooms.RemoveAt(index);
-                            break;
-                        case "Payment":
-                            payments.RemoveAt(index);
-                            break;
-                        case "Invoice":
-                            invoices.RemoveAt(index);
-                            break;
-                        case "Hotel":
-                            hotels.RemoveAt(index);
-                            break;
-                    }
+                    index = FindIndex(employee, "Employee");  // find the index of the specific employee in collection
+                    employees.RemoveAt(index);  // remove that employee form the collection
                     break;
+
             }
         }
 
-        //***Commit the changes to the database
-        public bool FinalizeChanges(object obj,string table)
+        public void DataMaintenance(Customer customer, DataBase.DBOperation operation)
         {
-            return phumlaKamnandiDB.UpdateDataSource(obj,table);
+            int index = 0;
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(customer, operation);
+            //perform operations on the collection
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    //*** Add the employee to the Collection
+                    customers.Add(customer);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    index = FindIndex(customer, "Customer");
+                    customers[index] = customer;  // replace employee at this index with the updated employee
+                    break;
+                case DataBase.DBOperation.Delete:
+                    index = FindIndex(customer, "Customer");  // find the index of the specific employee in collection
+                    customers.RemoveAt(index);  // remove that employee form the collection
+                    break;
+
+            }
+        }
+
+        public void DataMaintenance(Booking booking, DataBase.DBOperation operation)
+        {
+            int index = 0;
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(booking, operation);
+            //perform operations on the collection
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    //*** Add the employee to the Collection
+                    bookings.Add(booking);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    index = FindIndex(booking, "Booking");
+                    bookings[index] = booking;  // replace employee at this index with the updated employee
+                    break;
+                case DataBase.DBOperation.Delete:
+                    index = FindIndex(booking, "Booking");  // find the index of the specific employee in collection
+                    bookings.RemoveAt(index);  // remove that employee form the collection
+                    break;
+
+            }
+        }
+
+        public void DataMaintenance(Payment payment, DataBase.DBOperation operation)
+        {
+            int index = 0;
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(payment, operation);
+            //perform operations on the collection
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    //*** Add the employee to the Collection
+                    payments.Add(payment);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    index = FindIndex(payment, "Payment");
+                    payments[index] = payment;  // replace employee at this index with the updated employee
+                    break;
+                case DataBase.DBOperation.Delete:
+                    index = FindIndex(payment, "Payment");  // find the index of the specific employee in collection
+                    payments.RemoveAt(index);  // remove that employee form the collection
+                    break;
+
+            }
+        }
+
+        public void DataMaintenance(Room room, DataBase.DBOperation operation)
+        {
+            int index = 0;
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(room, operation);
+            //perform operations on the collection
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    //*** Add the employee to the Collection
+                    rooms.Add(room);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    index = FindIndex(room, "Room");
+                    rooms[index] = room;  // replace employee at this index with the updated employee
+                    break;
+                case DataBase.DBOperation.Delete:
+                    index = FindIndex(room, "Room");  // find the index of the specific employee in collection
+                    rooms.RemoveAt(index);  // remove that employee form the collection
+                    break;
+
+            }
+        }
+
+        public void DataMaintenance(Invoice invoice, DataBase.DBOperation operation)
+        {
+            int index = 0;
+            //perform a given database operation to the dataset in meory; 
+            phumlaKamnandiDB.DataSetChange(invoice, operation);
+            //perform operations on the collection
+            switch (operation)
+            {
+                case DataBase.DBOperation.Add:
+                    //*** Add the employee to the Collection
+                    invoices.Add(invoice);
+                    break;
+                case DataBase.DBOperation.Edit:
+                    index = FindIndex(invoice, "Invoice");
+                    invoices[index] = invoice;  // replace employee at this index with the updated employee
+                    break;
+                case DataBase.DBOperation.Delete:
+                    index = FindIndex(invoice, "Invoice");  // find the index of the specific employee in collection
+                    invoices.RemoveAt(index);  // remove that employee form the collection
+                    break;
+
+            }
+        }
+        //***Commit the changes to the database
+        public bool FinalizeChanges(Employee employee)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(employee);
+        }
+        public bool FinalizeChanges(Booking booking)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(booking);
+        }
+        public bool FinalizeChanges(Customer customer)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(customer);
+        }
+        public bool FinalizeChanges(Payment payment)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(payment);
+        }
+        public bool FinalizeChanges(Invoice invoice)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(invoice);
+        }
+        public bool FinalizeChanges(Room room)
+        {
+            return phumlaKamnandiDB.UpdateDataSource(room);
         }
         #endregion
 
@@ -214,7 +283,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Employee":
                     Employee employee = obj as Employee;
-                    found = (employee.getEmployeeID == employees[counter].getEmployeeID);
+                    found = (employee.EmployeeID == employees[counter].EmployeeID);
                     while (!found)
                     {
                         counter++;
@@ -226,7 +295,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (employee.getEmployeeID == employees[counter].getEmployeeID);
+                            found = (employee.EmployeeID == employees[counter].EmployeeID);
                         }
 
                     }
@@ -241,7 +310,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Room":
                     Room room = obj as Room;
-                    found = (room.getRoomNumber == rooms[counter].getRoomNumber);
+                    found = (room.RoomNumber == rooms[counter].RoomNumber);
                     while (!found)
                     {
                         counter++;
@@ -253,7 +322,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (room.getRoomNumber == rooms[counter].getRoomNumber);
+                            found = (room.RoomNumber == rooms[counter].RoomNumber);
                         }
 
                     }
@@ -268,7 +337,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Payment":
                     Payment payment = obj as Payment;
-                    found = (payment.ID1 == payments[counter].ID1);
+                    found = (payment.paymentID == payments[counter].paymentID);
                     while (!found)
                     {
                         counter++;
@@ -280,7 +349,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (payment.ID1 == payments[counter].ID1);
+                            found = (payment.paymentID == payments[counter].paymentID);
                         }
 
                     }
@@ -295,7 +364,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Invoice":
                     Invoice invoice = obj as Invoice;
-                    found = (invoice.InvoiceID1 == invoices[counter].InvoiceID1);
+                    found = (invoice.InvoiceID == invoices[counter].InvoiceID);
                     while (!found)
                     {
                         counter++;
@@ -307,7 +376,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (invoice.InvoiceID1 == invoices[counter].InvoiceID1);
+                            found = (invoice.InvoiceID == invoices[counter].InvoiceID);
                         }
 
                     }
@@ -426,7 +495,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Employee":
                     Employee employee = obj as Employee;
-                    found = (employee.getEmployeeID == employees[counter].getEmployeeID);
+                    found = (employee.EmployeeID == employees[counter].EmployeeID);
                     while (!found)
                     {
                         counter++;
@@ -438,7 +507,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (employee.getEmployeeID == employees[counter].getEmployeeID);
+                            found = (employee.EmployeeID == employees[counter].EmployeeID);
                         }
 
                     }
@@ -453,7 +522,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Room":
                     Room room = obj as Room;
-                    found = (room.getRoomNumber == rooms[counter].getRoomNumber);
+                    found = (room.RoomNumber == rooms[counter].RoomNumber);
                     while (!found)
                     {
                         counter++;
@@ -465,7 +534,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (room.getRoomNumber == rooms[counter].getRoomNumber);
+                            found = (room.RoomNumber == rooms[counter].RoomNumber);
                         }
 
                     }
@@ -480,7 +549,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Payment":
                     Payment payment = obj as Payment;
-                    found = (payment.ID1 == payments[counter].ID1);
+                    found = (payment.paymentID == payments[counter].paymentID);
                     while (!found)
                     {
                         counter++;
@@ -492,7 +561,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (payment.ID1 == payments[counter].ID1);
+                            found = (payment.paymentID == payments[counter].paymentID);
                         }
 
                     }
@@ -507,7 +576,7 @@ namespace PumlaKamnandi_Project.Business
                     break;
                 case "Invoice":
                     Invoice invoice = obj as Invoice;
-                    found = (invoice.InvoiceID1 == invoices[counter].InvoiceID1);
+                    found = (invoice.InvoiceID == invoices[counter].InvoiceID);
                     while (!found)
                     {
                         counter++;
@@ -519,7 +588,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (invoice.InvoiceID1 == invoices[counter].InvoiceID1);
+                            found = (invoice.InvoiceID == invoices[counter].InvoiceID);
                         }
 
                     }
