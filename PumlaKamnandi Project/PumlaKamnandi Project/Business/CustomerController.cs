@@ -433,15 +433,15 @@ namespace PumlaKamnandi_Project.Business
         }*/
 
         //This method receives a employee ID as a parameter; finds the employee object in the collection of employees and then returns this object
-        public object Find(object obj,string table)
+        public object Find(int ID,string table)
         {
             int counter = 0;
             bool found = false;
             switch (table)
             {
                 case "Booking":
-                    Booking booking = obj as Booking;
-                    found = (booking.ReservationID == bookings[counter].ReservationID);
+                    //Booking booking = obj as Booking;
+                    found = (ID == bookings[counter].ReservationID);
                     while (!found)
                     {
                         counter++;
@@ -453,7 +453,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (booking.ReservationID == bookings[counter].ReservationID);
+                            found = (ID == bookings[counter].ReservationID);
                         }
 
                     }
@@ -467,8 +467,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Customer":
-                    Customer customer = obj as Customer;
-                    found = (customer.CustomerID == customers[counter].CustomerID);
+                    //Customer customer = obj as Customer;
+                    found = (Convert.ToString(ID) == customers[counter].CustomerID);
                     while (!found)
                     {
                         counter++;
@@ -480,7 +480,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (customer.CustomerID == customers[counter].CustomerID);
+                            found = (Convert.ToString(ID) == customers[counter].CustomerID);
                         }
 
                     }
@@ -494,8 +494,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Employee":
-                    Employee employee = obj as Employee;
-                    found = (employee.EmployeeID == employees[counter].EmployeeID);
+                    //Employee employee = obj as Employee;
+                    found = (Convert.ToString(ID) == employees[counter].EmployeeID);
                     while (!found)
                     {
                         counter++;
@@ -507,7 +507,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (employee.EmployeeID == employees[counter].EmployeeID);
+                            found = (Convert.ToString(ID) == employees[counter].EmployeeID);
                         }
 
                     }
@@ -521,8 +521,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Room":
-                    Room room = obj as Room;
-                    found = (room.RoomNumber == rooms[counter].RoomNumber);
+                    //Room room = obj as Room;
+                    found = (ID == rooms[counter].RoomNumber);
                     while (!found)
                     {
                         counter++;
@@ -534,7 +534,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (room.RoomNumber == rooms[counter].RoomNumber);
+                            found = (ID == rooms[counter].RoomNumber);
                         }
 
                     }
@@ -548,8 +548,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Payment":
-                    Payment payment = obj as Payment;
-                    found = (payment.paymentID == payments[counter].paymentID);
+                    //Payment payment = obj as Payment;
+                    found = (ID == payments[counter].paymentID);
                     while (!found)
                     {
                         counter++;
@@ -561,7 +561,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (payment.paymentID == payments[counter].paymentID);
+                            found = (ID == payments[counter].paymentID);
                         }
 
                     }
@@ -575,8 +575,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Invoice":
-                    Invoice invoice = obj as Invoice;
-                    found = (invoice.InvoiceID == invoices[counter].InvoiceID);
+                    //Invoice invoice = obj as Invoice;
+                    found = (ID == invoices[counter].InvoiceID);
                     while (!found)
                     {
                         counter++;
@@ -588,7 +588,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (invoice.InvoiceID == invoices[counter].InvoiceID);
+                            found = (ID == invoices[counter].InvoiceID);
                         }
 
                     }
@@ -602,8 +602,8 @@ namespace PumlaKamnandi_Project.Business
                     }
                     break;
                 case "Hotel":
-                    Hotel hotel = obj as Hotel;
-                    found = (hotel.HotelID == hotels[counter].HotelID);
+                    //Hotel hotel = obj as Hotel;
+                    found = (ID == hotels[counter].HotelID);
                     while (!found)
                     {
                         counter++;
@@ -615,7 +615,7 @@ namespace PumlaKamnandi_Project.Business
                         }
                         else
                         {
-                            found = (hotel.HotelID == hotels[counter].HotelID);
+                            found = (ID == hotels[counter].HotelID);
                         }
 
                     }

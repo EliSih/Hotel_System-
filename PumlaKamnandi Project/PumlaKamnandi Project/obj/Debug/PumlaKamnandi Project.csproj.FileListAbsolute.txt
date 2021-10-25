@@ -16,3 +16,5 @@ C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKa
 C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.Properties.Resources.resources
 C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.GenerateResource.cache
 C:\Users\Lukhaya\Source\Repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi Project.csproj.CoreCompileInputs.cache
+C:\Users\Lukhaya\source\repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.customerRegForm.resources
+C:\Users\Lukhaya\source\repos\EliSih\Hotel_System-\PumlaKamnandi Project\PumlaKamnandi Project\obj\Debug\PumlaKamnandi_Project.customerForm.resources
