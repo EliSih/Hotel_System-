@@ -112,7 +112,7 @@ namespace PumlaKamnandi_Project
 
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ReservationsForm();
+            new Form3();
         }
 
         private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,14 +122,14 @@ namespace PumlaKamnandi_Project
 
         private void addCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form1();
+            new customerRegForm();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Form4();
 
-            if (employeeListForm == null)
+            /*if (employeeListForm == null)
             {
                 CreateNewEmployeeListForm();
             }
@@ -141,11 +141,16 @@ namespace PumlaKamnandi_Project
             //7.3 write the code to call the setUpEmployeeListView method
             employeeListForm.setUpEmployeeListView();
             //7.4 write the code to show the employeeListForm form
-            employeeListForm.Show();
+            employeeListForm.Show();*/
 
         }
 
         private void resevationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MDIParent1_Load(object sender, EventArgs e)
         {
 
         }

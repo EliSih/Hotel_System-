@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PumlaKamnandi_Project.Business
 {
-    class Booking
+    class Booking: object
     {
         #region Data Members
         private int reservationID;
@@ -16,6 +16,8 @@ namespace PumlaKamnandi_Project.Business
         private decimal totalCost;
         private int employeeID;
         private int roomNumber;
+        private string customerID;
+        private string customer;
         #endregion
 
         #region Constructor
@@ -35,6 +37,12 @@ namespace PumlaKamnandi_Project.Business
         #endregion
 
         #region Access Modifiers
+        public string CustomerID 
+        {
+            get { return customerID; }
+            set { customerID = value; }
+        }
+
         public int ReservationID
         {
             get { return reservationID; }

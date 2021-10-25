@@ -62,7 +62,7 @@ namespace PumlaKamnandi_Project
             // 
             this.textBox1.Location = new System.Drawing.Point(166, 92);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(111, 20);
             this.textBox1.TabIndex = 2;
             // 
             // button1
@@ -82,9 +82,11 @@ namespace PumlaKamnandi_Project
             this.button2.TabIndex = 4;
             this.button2.Text = "View all";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listView1
             // 
+            this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(77, 129);
             this.listView1.Name = "listView1";
