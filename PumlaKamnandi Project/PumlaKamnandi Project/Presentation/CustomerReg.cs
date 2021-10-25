@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PumlaKamnandi_Project
 {
-    public partial class Form1 : Form
+    public partial class customerRegForm : Form
     {
-        public Form1()
+        public customerRegForm()
         {
             InitializeComponent();
         }

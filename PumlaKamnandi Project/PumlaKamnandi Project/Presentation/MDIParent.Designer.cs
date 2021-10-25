@@ -1,7 +1,7 @@
 ﻿
 namespace PumlaKamnandi_Project
 {
-    partial class MDIParent1
+    partial class MDIParent
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace PumlaKamnandi_Project
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.resevationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +91,7 @@ namespace PumlaKamnandi_Project
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Text = "Add Reservation ";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // customersToolStripMenuItem
@@ -106,14 +106,14 @@ namespace PumlaKamnandi_Project
             // viewCustomersToolStripMenuItem
             // 
             this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
-            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewCustomersToolStripMenuItem.Text = "View Customers";
             this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.viewCustomersToolStripMenuItem_Click);
             // 
             // addCustomerToolStripMenuItem
             // 
             this.addCustomerToolStripMenuItem.Name = "addCustomerToolStripMenuItem";
-            this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addCustomerToolStripMenuItem.Text = "Add Customer";
             this.addCustomerToolStripMenuItem.Click += new System.EventHandler(this.addCustomerToolStripMenuItem_Click);
             // 
@@ -237,7 +237,7 @@ namespace PumlaKamnandi_Project
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // MDIParent1
+            // MDIParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -247,7 +247,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "MDIParent1";
+            this.Name = "MDIParent";
             this.Text = "MDIParent ";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

@@ -10,19 +10,24 @@ using System.Windows.Forms;
 
 namespace PumlaKamnandi_Project
 {
-    public partial class customerForm : Form
+    public partial class ReservationsForm : Form
     {
-        public customerForm()
+        public ReservationsForm()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }

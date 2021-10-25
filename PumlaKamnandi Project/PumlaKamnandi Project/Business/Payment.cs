@@ -9,13 +9,13 @@ namespace PumlaKamnandi_Project.Business
     class Payment
     {
         #region Data Members
-        private int ID;
+        private int id;
         private string type;
         private string description;
         private string date;
         private decimal Amount;
 
-        public int ID1 { get => ID; set => ID = value; }
+        public int paymentID { get => id; set => id = value; }
         public string Type { get => type; set => type = value; }
         public string Description { get => description; set => description = value; }
         public string Date { get => date; set => date = value; }
