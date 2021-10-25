@@ -1,7 +1,7 @@
 ﻿
 namespace PumlaKamnandi_Project
 {
-    partial class Form1
+    partial class customerRegForm
     {
         /// <summary>
         /// Required designer variable.
@@ -309,7 +309,7 @@ namespace PumlaKamnandi_Project
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // customerRegForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -342,7 +342,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "customerRegForm";
             this.Text = "customerRegForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

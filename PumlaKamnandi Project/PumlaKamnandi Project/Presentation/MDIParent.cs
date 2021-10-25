@@ -11,16 +11,17 @@ using PumlaKamnandi_Project.Business;
 
 namespace PumlaKamnandi_Project
 {
-    public partial class MDIParent1 : Form
+    public partial class MDIParent : Form
     {
         private int childFormNumber = 0;
 
         customerForm cusForm; 
+        form
 
        
         
         
-        public MDIParent1()
+        public MDIParent()
         {
             InitializeComponent();
         }
@@ -122,7 +123,7 @@ namespace PumlaKamnandi_Project
 
         private void addCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form1();
+            new customerRegForm();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
