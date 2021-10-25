@@ -13,6 +13,7 @@ namespace PumlaKamnandi_Project.Business
         private decimal price;
         private string description;
         private int capacity;
+        string occupied; 
         #endregion
 
         #region Access Modifiers 
@@ -40,6 +41,12 @@ namespace PumlaKamnandi_Project.Business
             set { capacity = value; }
         }
         #endregion
+
+        public string Occupied 
+        {
+            get { return occupied; }
+            set { occupied = value; }
+        }
 
         #region Constructor
         public Room()

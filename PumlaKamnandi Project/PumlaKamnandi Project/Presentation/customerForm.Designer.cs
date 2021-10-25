@@ -1,7 +1,7 @@
 ﻿
 namespace PumlaKamnandi_Project
 {
-    partial class Form2
+    partial class customerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -92,7 +92,7 @@ namespace PumlaKamnandi_Project
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // Form2
+            // customerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,7 +104,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "customerForm";
             this.Text = "Customers";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
