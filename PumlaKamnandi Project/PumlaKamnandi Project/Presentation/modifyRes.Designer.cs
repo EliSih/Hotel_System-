@@ -92,6 +92,7 @@ namespace PumlaKamnandi_Project
             this.listView1.Size = new System.Drawing.Size(617, 210);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // button3
             // 
@@ -136,6 +137,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.label1);
             this.Name = "Form4";
             this.Text = "Reservation modification";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

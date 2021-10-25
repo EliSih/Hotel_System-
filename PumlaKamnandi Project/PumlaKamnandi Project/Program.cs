@@ -16,7 +16,7 @@ namespace PumlaKamnandi_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new customerRegForm());
+            Application.Run(new MDIParent1());
         }
     }
 }
