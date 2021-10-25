@@ -216,7 +216,7 @@ namespace PumlaKamnandi_Project
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "ReservationsForm";
-            this.Text = "Form3";
+            this.Text = "ResForm";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
