@@ -94,16 +94,27 @@ namespace PumlaKamnandi_Project
 
         private void button6_Click(object sender, EventArgs e)
         {
-            this.Close();
+            var exit = MessageBox.Show("Are sure you want to close this window?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void clear_Click(object sender, EventArgs e)
         {
-            ClearAll();
+
+            var exit = MessageBox.Show("Are sure you want to clear form?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.Yes)
+            {
+                ClearAll();
+            }
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            
             if (ReslistView.SelectedItems.Count > 0)
             {
                 //MessageBox.Show("Selected: " + listView1.SelectedItems[0].Text);
@@ -121,20 +132,29 @@ namespace PumlaKamnandi_Project
 
         private void Cancelbutton_Click(object sender, EventArgs e)
         {
-
+            var exit = MessageBox.Show("Are sure you want to cancel changes?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.Yes)
+            {
+                ClearAll();
+            }
         }
 
         private void Submitbutton_Click(object sender, EventArgs e)
         {
-            booking = new Booking();
-            booking.ReservationID = Convert.ToInt32(ResnumtextBox.Text);
-            booking.CustomerID = CustomerIDtextBox.Text;
-            booking.RoomNumber = Convert.ToInt32(roomNumtextBox.Text);
-            booking.CheckInDate = checkIncomboBox.Text;
-            booking.CheckOutDate = checkoutcomboBox.Text;
-            booking.TotalCost = Convert.ToInt32(PricetextBox.Text);
-            controller.DataMaintenance(booking, DataBase.DBOperation.Add);
-            controller.FinalizeChanges(booking);
+            var exit = MessageBox.Show("Are sure you want to close this window?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.Yes)
+            {
+                booking = new Booking();
+                booking.ReservationID = Convert.ToInt32(ResnumtextBox.Text);
+                booking.CustomerID = CustomerIDtextBox.Text;
+                booking.RoomNumber = Convert.ToInt32(roomNumtextBox.Text);
+                booking.CheckInDate = checkIncomboBox.Text;
+                booking.CheckOutDate = checkoutcomboBox.Text;
+                booking.TotalCost = Convert.ToInt32(PricetextBox.Text);
+                controller.DataMaintenance(booking, DataBase.DBOperation.Add);
+                controller.FinalizeChanges(booking);
+            }
+            
             
         }
     }
