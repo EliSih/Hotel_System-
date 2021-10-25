@@ -715,7 +715,10 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@totalCost", SqlDbType.Money, 100, "totalCost");
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
+            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID");
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@customerID ", SqlDbType.Int, 10, "customerID");
             daMain.UpdateCommand.Parameters.Add(param);
 
 
@@ -955,7 +958,10 @@ namespace PumlaKamnandi_Project.Data
             param = new SqlParameter("@totalCost", SqlDbType.Money, 100, "totalCost");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID ");
+            param = new SqlParameter("@employeeID ", SqlDbType.Int, 10, "employeeID");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@customerID ", SqlDbType.Int, 10, "customerID");
             daMain.InsertCommand.Parameters.Add(param);
 
 
